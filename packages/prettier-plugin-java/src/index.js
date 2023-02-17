@@ -37,7 +37,12 @@ const parsers = {
     astFormat: "java",
     locStart,
     locEnd,
-    hasPragma
+    hasPragma,
+    preprocess: function (code, options) {
+const javaParser = require("../../java-parser");
+const cst = javaParser.parse(code, options.entrypoint)
+      return "// hello world, This is from preprocess 你好吗？\n" + code;
+    }
   }
 };
 

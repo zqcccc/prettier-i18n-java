@@ -17,6 +17,12 @@ const { hardline, lineSuffix, breakParent, literalline } = builders;
  * @return a doc with the token and its comments
  */
 export function printTokenWithComments(token: IToken) {
+  if (token.tokenType.name === 'StringLiteral') {
+    token.image = token.image.replace(/[\u4e00-\u9fa5\u0800-\u4e00]+/g, '')
+  }
+  if (/text|string|char/i.test(token.tokenType.name)) {
+    console.log('token: ', token)
+  }
   return printWithComments(
     token,
     token.image,
